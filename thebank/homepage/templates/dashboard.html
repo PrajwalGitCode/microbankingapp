@@ -1,0 +1,184 @@
+{% extends 'main.html' %}
+{% block body_block %}
+{% load static %}
+
+<div class="container text-center">
+         {% for w_item in details_t %}
+    <div class="row">
+        <div class="col-sm-3">
+            <h4>{{w_item.cardname}}</h4>
+            <p><strong>Name:</strong> {{w_item.name}}</p>
+            <p><strong>Email:</strong> {{w_item.Email}}</p>
+            <p><strong>Phone:</strong> {{w_item.PhoneNo}}</p>
+            <p><strong>Address:</strong> {{w_item.Address}}</p>
+            <p><strong>Balance:</strong> {{w_item.balance}}</p>
+        </div>
+        
+
+        <div class="col-sm-9">
+            <div class="row">
+                <div class="col-8 col-sm-6">
+                    <h4>Bank Details</h4>
+                    <p><strong>Bank Name:</strong> {{w_item.BankName}}</p>
+                    <p><strong>Card Number:</strong> {{w_item.CardNumber}}</p>
+                </div>
+                
+                <div class="col-4 col-sm-6">
+                    <h4>Card Details</h4>
+                    <p><strong>IFSC:</strong> {{w_item.IFSC}}</p>
+                    <p><strong>CVV:</strong> {{w_item.CVV}}</p>
+                </div>
+            </div>
+            <div class="profile-footer">
+                <a href="{% url 'editdetails' w_item.id %}" class="btn-action">Edit Profile</a>
+                <a href="{% url 'transaction_history' w_item.id %}" class="btn-action">View Transactions</a>
+                <a href="{% url 'add_transaction' w_item.id %}" class="btn-action">Add Transaction</a>
+                <a href="{% url 'add_bills' w_item.id %}" class="btn-action">Add Bills</a>
+                <a href="{% url 'transfer_money' w_item.id %}" class="btn-action">Transfer Money</a>
+            </div>
+        </div>
+        
+    </div>
+    {% endfor %}
+</div>
+
+
+<style>
+    body {
+        margin: 0;
+        background-color: #000000;
+        color: #e0e0e0;
+        padding-top: 150px;
+        font-family: 'Poppins', sans-serif;
+    }
+    
+
+    .profile-container {
+        background: linear-gradient(135deg, #1a2b3a, #4e0031);
+        border-radius: 10px;
+        padding: 50px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        max-width: 85%;
+        margin: 20px auto;
+        box-sizing: border-box;
+        color: #e0e0e0;
+    }
+    
+
+    .profile-container h4 {
+        color: #f8f9fa;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        text-align: left;
+    }
+    
+
+    .profile-container p {
+        font-size: 1rem;
+        margin-bottom: 0.8rem;
+        color: #ecf0f1;
+    }
+    
+    .profile-container p strong {
+        color: #bdc3c7;
+        font-weight: 500;
+    }
+    
+
+    .profile-container h4 {
+        color: #ecf0f1;
+        margin-bottom: 1.5rem;
+        font-size: 1.25rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    
+
+    .container.text-center {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: stretch;
+    }
+    
+
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 -15px;
+    }
+    
+
+    .col-sm-3, .col-sm-9 {
+        padding: 15px;
+    }
+    
+
+    .col-sm-3 {
+        background: linear-gradient(135deg, #1a2b3a, #4e0031);
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+    
+    .col-sm-9 {
+        background-color: #121212;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+    
+
+    .col-sm-6 {
+        background-color: #121212;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        padding: 15px;
+    }
+    
+
+    .btn-action {
+        background: linear-gradient(135deg, #1a2b3a, #4e0031);
+        color: #ffffff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        text-decoration: none;
+        margin-top: 10px;
+    }
+    
+    .btn-action:hover {
+        background: linear-gradient(135deg, #001b33, #2b002a);
+    }
+    
+
+    @media (max-width: 576px) {
+        .profile-container h4 {
+            font-size: 1.25rem;
+        }
+    
+        .col-sm-3, .col-sm-9 {
+            padding: 10px;
+        }
+    
+        .btn-action {
+            font-size: 0.875rem;
+            padding: 8px 15px;
+        }
+    }
+    
+    @media (min-width: 577px) and (max-width: 768px) {
+        .profile-container h4 {
+            font-size: 1.375rem;
+        }
+    
+        .btn-action {
+            font-size: 1rem;
+            padding: 12px 20px;
+        }
+    }
+    
+</style>
+
+{% endblock %}

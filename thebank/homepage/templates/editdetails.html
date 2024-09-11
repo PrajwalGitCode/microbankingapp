@@ -1,0 +1,144 @@
+<!-- edit_details.html -->
+{% extends 'main.html' %}
+
+{% block body_block %}
+<section class="edit-details">
+    <div class="container">
+        <h1>Edit Your Details</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+        </form>
+    </div>
+</section>
+
+<style>
+    body {
+        margin: 0;
+        background-color: #121212;
+        color: #e0e0e0;
+        padding-top: 150px;
+        font-family: 'Poppins', sans-serif;
+        line-height: 1.6;
+    }
+
+    .edit-details h1 {
+        color: #ffffff;
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    /* Form Container */
+    .edit-details .container {
+        max-width: 1200px;
+        background: linear-gradient(135deg, #1a2b3a, #4e0031);
+        padding: 2rem 3rem;
+        border-radius: 10px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        margin: 0 auto;
+        transition: transform 0.3s ease-in-out;
+    }
+
+
+    /* Form Field Styling */
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    form .form-control {
+        background-color: #2a2a2a;
+        border: 2px solid #333;
+        border-radius: 5px;
+        padding: 0.75rem 1rem;
+        color: #ffffff;
+        margin-bottom: 1.5rem;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    form .form-control:focus {
+        border-color: #3498db;
+        box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+        outline: none;
+    }
+
+    form .form-control::placeholder {
+        color: #999999;
+    }
+
+    /* Button Styling */
+    .btn-primary {
+        background-color: #3498db;
+        color: #ffffff;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+    }
+
+    .btn-primary:hover {
+        background-color: #2980b9;
+        transform: scale(1.05);
+    }
+
+    .btn-primary:active {
+        transform: scale(0.98);
+        box-shadow: none;
+    }
+
+    /* Form Header Styling */
+    .form-header {
+        color: #f8f9fa;
+        font-size: 1.75rem;
+        margin-bottom: 1.5rem;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .edit-details h1 {
+            font-size: 2rem;
+        }
+
+        .edit-details .container {
+            padding: 1.5rem 2rem;
+        }
+
+        .form-header {
+            font-size: 1.5rem;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .edit-details h1 {
+            font-size: 1.8rem;
+        }
+
+        .edit-details .container {
+            padding: 1rem 1.5rem;
+        }
+
+        .form-control {
+            padding: 0.5rem 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+        }
+    }
+</style>
+
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'main.html' %}
+{% block body_block %}
+{% load static %}
+
+<div class="container text-center">
+    <h2 class="my-4">Deposit/Withdraw - Select a Bank Card</h2>
+    {% for w_item in details_t %}
+    <div class="profile-footer">
+        <a href="{% url 'add_transaction' w_item.id %}" class="btn-action">{{ w_item.cardname }} - {{ w_item.BankName }}</a>
+    </div>
+    {% endfor %}
+
+</div>
+
+
+
+<style>
+    body {
+        margin: 0;
+        background-color: #000000;
+        color: #e0e0e0;
+        padding-top: 150px;
+    }
+    
+    /* Container Styling */
+    .container {
+        padding-top: 50px;
+    }
+    
+    /* Profile Footer */
+    .profile-footer {
+        margin-bottom: 1rem;
+    }
+    
+    .btn-action {
+        display: inline-block;
+        background: linear-gradient(135deg, #1a2b3a, #4e0031);
+        color: #ffffff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        text-decoration: none;
+        font-size: 1rem;
+        transition: background-color 0.3s ease;
+    }
+    
+    .btn-action:hover {
+        background: linear-gradient(135deg, #001b33, #2b002a);
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 576px) {
+        .btn-action {
+            font-size: 0.875rem;
+            padding: 8px 16px;
+        }
+    }
+    
+    @media (min-width: 577px) and (max-width: 768px) {
+        .btn-action {
+            font-size: 0.9375rem;
+            padding: 10px 18px;
+        }
+    }
+    
+</style>
+
+{% endblock %}

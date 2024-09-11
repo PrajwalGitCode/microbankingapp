@@ -1,0 +1,134 @@
+{% extends 'main.html' %}
+
+{% block body_block %}
+<div class="form-box">
+    <form class="bank-form" method="post">
+        {% csrf_token %}
+        <div class="form-grid">
+            <div class="form-left">
+                <div class="form-group">{{ form.name.label_tag }} {{ form.name }}</div>
+                <div class="form-group">{{ form.Email.label_tag }} {{ form.Email }}</div>
+                <div class="form-group">{{ form.PhoneNo.label_tag }} {{ form.PhoneNo }}</div>
+                <div class="form-group">{{ form.CardNumber.label_tag }} {{ form.CardNumber }}</div>
+            </div>
+            <div class="form-right">
+                <div class="form-group">{{ form.CVV.label_tag }} {{ form.CVV }}</div>
+                <div class="form-group">{{ form.BankName.label_tag }} {{ form.BankName }}</div>
+                <div class="form-group">{{ form.Address.label_tag }} {{ form.Address }}</div>
+                <div class="form-group">{{ form.IFSC.label_tag }} {{ form.IFSC }}</div>
+                <div class="form-group">{{ form.cardname.label_tag }} {{ form.cardname}}</div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+
+<style>
+    /* Form Container */
+
+    body {
+        background-color: #000000;
+        color: #d10069;
+        font-family: 'Poppins', sans-serif;
+        padding-top: 50px;
+    }
+
+    .form-box {
+        padding: 60px;
+        background: linear-gradient(135deg, #1a2b3a, #4e0031);
+        color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        max-width: 1200px;
+        margin: 80px auto;
+        border-radius: 12px;
+        border: 2px solid #d10069;          
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+
+    .form-left {
+        display: flex;
+        flex-direction: column;
+    }
+
+
+    .form-right {
+        display: flex;
+        flex-direction: column;
+    }
+
+
+    .form-group {
+        padding-bottom: 20px;
+    }
+
+    /* Label Styling */
+    .form-group label {
+        font-size: 14px;
+        font-weight: 600;
+        color: #ffffff;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+        display: block;
+        transition: color 0.3s ease;
+    }
+
+    /* Input Fields */
+    .form-control {
+        width: 100%;
+        padding: 12px 15px;
+        font-size: 15px;
+        border-radius: 6px;
+        border: 1px solid #555;
+        background-color: #1f1f1f;
+        color: cyan;;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+
+    /* Button Styling */
+    .btn-primary {
+        background-color: #d10069;
+        border: none;
+        padding: 12px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        color: rgb(255, 255, 255);
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    .btn-primary:hover {
+        background-color: orangered;
+    }
+
+    /* Form Padding for Smaller Screens */
+    @media (max-width: 768px) {
+        .form-box {
+            padding: 40px;
+            margin: 40px auto;
+        }
+
+        .form-grid {
+            grid-template-columns: 1fr;
+            /* Stack fields in a single column on small screens */
+        }
+    }
+</style>
+{% endblock %}

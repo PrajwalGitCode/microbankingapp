@@ -1,0 +1,144 @@
+{% extends 'main.html' %}
+{% block body_block %}
+{% load static %}
+
+<h2 class="text-center my-4">{{ bank.cardname }} - Transaction History</h2>
+
+<div class="row">
+    <!-- Transactions Table -->
+    <div class="col-md-6">
+        <h3 class="text-center my-3">Transactions</h3>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead class="table-dark text-center">
+                    <tr>
+                        <th class="text-uppercase">Type</th>
+                        <th class="text-uppercase">Amount</th>
+                        <th class="text-uppercase">Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Display Transactions -->
+                    {% for transaction in transactions %}
+                    <tr class="{% if transaction.transaction_type == 'deposit' %}table-success{% elif transaction.transaction_type == 'withdrawal' %}table-danger{% endif %}">
+                        <td>{{ transaction.transaction_type }}</td>
+                        <td>{{ transaction.amount }}</td>
+                        <td>{{ transaction.timestamp }}</td>  
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="3" class="text-center">No transactions available.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Bills Table -->
+    <div class="col-md-6">
+        <h3 class="text-center my-3">Bill Payments</h3>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead class="table-dark text-center">
+                    <tr>
+                        <th class="text-uppercase">Type</th>
+                        <th class="text-uppercase">Amount</th>
+                        <th class="text-uppercase">Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Display Bill Payments -->
+                    {% for bill in allbills %}
+                    <tr class="table-warning"> <!-- Assuming a neutral background for bills -->
+                        <td>{{ bill.bills_type }}</td>
+                        <td>{{ bill.amount }}</td>
+                        <td>{{ bill.timestamp }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="3" class="text-center">No bills available.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    body {
+        background-color: #000000;
+        padding-top: 100px;
+        overflow-x: hidden;
+    }
+    
+    .text-center {
+        color: cyan;
+    }
+    
+    /* Table Container Styling */
+    .table-responsive {
+        padding-bottom: 50px;
+        width: 90%;  /* Reduce the width slightly */
+        margin: 0 auto;  /* Center the table */
+    }
+    
+    /* Table Head Colors */
+    .table thead {
+        background: linear-gradient(135deg, #4e0031, #6f004a);
+        color: #ffffff;
+        border-bottom: 3px solid cyan;
+    }
+    
+    /* Table Cells */
+    .table td,
+    .table th {
+        padding: 0.8rem; /* Reduced padding for a more compact design */
+        font-size: 1.1rem; /* Slightly smaller font */
+        border-color: cyan;
+        background-color: #000000;
+        color: cyan;
+    }
+    
+    /* Transaction Types Styling */
+    .table-success td {
+        color: #2ecc71;
+        font-weight: bold;
+    }
+    
+    .table-danger td {
+        color: #e74c3c;
+        font-weight: bold;
+    }
+    
+    .table-warning td {
+        color: #ff0000;
+        font-weight: bold;
+    }
+    
+    /* Adjustments for Smaller Screens */
+    @media (max-width: 576px) {
+        .table {
+            font-size: 0.9rem;  /* Smaller text on mobile */
+        }
+    
+        .table th,
+        .table td {
+            padding: 0.5rem;  /* Reduce padding for mobile */
+        }
+    }
+    
+    /* Adjustments for Medium Screens */
+    @media (min-width: 577px) and (max-width: 768px) {
+        .table th,
+        .table td {
+            padding: 0.7rem; /* Moderate padding for tablet-sized devices */
+            font-size: 1rem; /* Slightly smaller font for better organization */
+        }
+    }
+    
+</style>
+
+{% endblock %}
